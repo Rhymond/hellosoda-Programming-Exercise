@@ -33,3 +33,8 @@ The server logs the following front-end events:
 + `pip install -r requirements.txt`
 + `python ./app.py --debug`
 + Visit `http://localhost:8888` to see the page.
+
+## Todo
+- [ ] Write Angular JS tests
+- [ ] yarn integration for package managing
+- [ ] Webpack Integration

@@ -33,9 +33,9 @@ def main():
         (r"/api/people", PeopleHandler),
         (r"/api/log", LogHandler),
         (r"/(.*)", tornado.web.StaticFileHandler,
-        {"path" : os.path.join(path, 'app', 'index.html')}),
+            {"path" : os.path.join(path, 'app', 'index.html')}),
         (r"/partials/(.*)", tornado.web.StaticFileHandler,
-        {"path" : os.path.join(path, 'app', 'partials')}),
+            {"path" : os.path.join(path, 'app', 'partials')}),
     ]
 
     settings = dict(
