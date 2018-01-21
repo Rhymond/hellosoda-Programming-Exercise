@@ -13,7 +13,7 @@ Tornado Angular Single Page Application
 ### About
 
 Single Page application for serving people data from ```storage/people.json``` file.
-Files and data are served using Tornado Web Server (Python) and 
+Files and data are served using Tornado Web Server (Python) and
 User Interface is built using Angular JS and Lightweight Bulma CSS framework.
 
 By clicking on selected Person "view" button you can open detailed Person Card.
@@ -29,7 +29,7 @@ The server logs the following front-end events:
 
 ## Installation
 
++ Clone Repository
 + `pip install -r requirements.txt`
 + `python ./app.py --debug`
 + Visit `http://localhost:8888` to see the page.
-
