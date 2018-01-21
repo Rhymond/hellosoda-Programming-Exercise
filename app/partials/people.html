@@ -1,0 +1,195 @@
+<div class="people" >
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          People
+        </h1>
+        <h2 class="subtitle">
+          Choose a Person
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="people-list">
+    <div class="container">
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <th>Avatar</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Job Title</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(index, person) in people">
+            <td>
+              <figure class="image avatar is-64x64">
+                <img ng-src="static/assets/{{person.personal.avatar}}" alt="Profile Avatar" ng-mouseover="hoverAvatar(person)" />
+              </figure>
+            </td>
+            <td>{{person.personal.first_name | title | capitalise}} {{person.personal.last_name}}</td>
+            <td>{{person.personal.age}}</td>
+            <td>{{person.personal.job_title}}</td>
+            <td>{{person.personal.city}}</td>
+            <td>{{person.personal.country}}</td>
+            <td>
+              <a class="button is-primary" ng-click='viewPerson(index)'>View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="modal is-active people-modal" ng-if="modal">
+    <div class="modal-background" ng-click='closeModal()'></div>
+    <div class="modal-content">
+      <div class="box">
+
+        <div class="columns">
+          <div class="column is-one-quarter">
+
+            <div class="has-text-centered">
+              <figure class="image avatar is-128x128">
+                <img ng-src="static/assets/{{person.personal.avatar}}" alt="Profile avatar" ng-mouseover="hoverAvatar(person)"/>
+              </figure>
+            </div>
+
+            <div class="scores">
+              <div class="score" ng-repeat="(name, score) in person.scores">
+                <div class="columns is-mobile">
+                  <div class="column is-half">{{name | title | capitalise}}</div>
+                  <div class="column is-half has-text-right">
+                    <div class="title is-5">{{score}}%</div>
+                  </div>
+                </div>
+
+                <progress class="progress is-small is-info" value="{{score}}" max="100">{{score}}%</progress>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <h1 class="title is-2">
+              {{person.personal.first_name}} {{person.personal.last_name}}
+            </h1>
+            <h2 class="subtitle">
+              {{person.personal.city}}, {{person.personal.country}}
+            </h2>
+
+            <div class="columns">
+              <div class="column">
+                <table class="table is-fullwidth is-narrow info-table">
+                  <tbody>
+                    <tr>
+                      <td>Age</td>
+                      <td>{{person.personal.age}}</td>
+                    </tr>
+                    <tr>
+                      <td>Job Title</td>
+                      <td>{{person.personal.job_title}}</td>
+                    </tr>
+                    <tr>
+                      <td>Company</td>
+                      <td>{{person.personal.job_company}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h3 class="title is-4">
+                  <span class="icon">
+                    <i class="fas fa-sm fa-laptop"></i>
+                  </span>
+                  Devices
+                </h3>
+
+                <table class="table is-fullwidth info-table">
+                  <thead>
+                    <tr>
+                      <th>Vendor</th>
+                      <th>Name</th>
+                      <th>
+                        <abbr title="The number of times a person has previously been seen to interact with a given type of device">
+                          Count
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="device in person.devices">
+                      <td>{{device.vendor | title | capitalise}}</td>
+                      <td>{{device.name | title | capitalise}}</td>
+                      <td>{{device.count}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <h3 class="title is-4">
+                  <span class="icon">
+                    <i class="fas fa-sm fa-star"></i>
+                  </span>
+                  Interests
+                </h3>
+
+                <table class="table is-fullwidth info-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>
+                        <abbr title="The number of times a person has previously mentioned the given subject">
+                          Count
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="interest in person.interests">
+                      <td>{{interest.name | title | capitalise}}</td>
+                      <td>{{interest.count}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div class="column">
+
+                <div ng-repeat="profile in person.social" class="social-profile">
+                  <h3 class="title is-4">
+                    <span class="icon">
+                      <i class="fab fa-sm fa-{{social[profile.type].icon}}"></i>
+                    </span>
+                    {{profile.type | title | capitalise }}
+                  </h3>
+
+                  <table class="table is-fullwidth is-narrow info-table">
+                    <tbody>
+                      <tr ng-repeat="field in social[profile.type].fields">
+                        <td>{{field | title | capitalise}}</td>
+                        <td>{{profile[field]}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="has-text-right">
+                    <a target="_blank" class="button link-to-profile is-info is-small" href="{{profile.url}}">
+                      Link to Profile
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close" ng-click='closeModal()'></button>
+  </div>
+</div>
