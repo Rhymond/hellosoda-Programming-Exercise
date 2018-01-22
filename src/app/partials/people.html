@@ -14,66 +14,29 @@
 
   <section class="people-list">
     <div class="container">
-      <table class="table is-fullwidth is-hoverable">
-        <thead>
-          <tr>
-            <th>Avatar</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Job Title</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="(index, person) in ctrl.people">
-            <td>
-              <figure class="image avatar is-64x64">
-                <img ng-src="{{person.personal.avatar}}" alt="Profile Avatar" ng-mouseover="hoverAvatar(person)" />
-              </figure>
-            </td>
-            <td>{{person.personal.first_name | title | capitalise}} {{person.personal.last_name}}</td>
-            <td>{{person.personal.age}}</td>
-            <td>{{person.personal.job_title}}</td>
-            <td>{{person.personal.city}}</td>
-            <td>{{person.personal.country}}</td>
-            <td>
-              <a class="button is-primary" ng-click='ctrl.viewPerson(index)'>View</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <people-list people="ctrl.people" view="ctrl.setPerson(person)" />
     </div>
   </section>
 
-  <div class="modal is-active people-modal" ng-if="ctrl.modal">
-    <div class="modal-background" ng-click='ctrl.closeModal()'></div>
-    <div class="modal-content">
+  <div class="people-modal">
+    <modal model="ctrl.modal" on-close="ctrl.closeModal()">
       <div class="box">
 
         <div class="columns">
-          <div class="column is-one-quarter">
 
+          <!-- Avatar and scores -->
+          <div class="column is-one-quarter">
             <div class="has-text-centered">
-              <figure class="image avatar is-128x128">
-                <img ng-src="{{ctrl.person.personal.avatar}}" alt="Profile avatar" ng-mouseover="ctrl.hoverAvatar(ctrl.person)"/>
-              </figure>
+              <avatar person="ctrl.person" size="128">
             </div>
 
             <div class="scores">
               <div class="score" ng-repeat="(name, score) in ctrl.person.scores">
-                <div class="columns is-mobile">
-                  <div class="column is-half">{{name | title | capitalise}}</div>
-                  <div class="column is-half has-text-right">
-                    <div class="title is-5">{{score}}%</div>
-                  </div>
-                </div>
-
-                <progress class="progress is-small is-info" value="{{score}}" max="100">{{score}}%</progress>
+                <score name="name" score="score" />
               </div>
             </div>
           </div>
+
           <div class="column">
             <h1 class="title is-2">
               {{ctrl.person.personal.first_name}} {{ctrl.person.personal.last_name}}
@@ -101,12 +64,7 @@
                   </tbody>
                 </table>
 
-                <h3 class="title is-4">
-                  <span class="icon">
-                    <i class="fas fa-sm fa-laptop"></i>
-                  </span>
-                  Devices
-                </h3>
+                <heading title="Devices" icon="laptop"></heading>
 
                 <table class="table is-fullwidth info-table">
                   <thead>
@@ -129,12 +87,7 @@
                   </tbody>
                 </table>
 
-                <h3 class="title is-4">
-                  <span class="icon">
-                    <i class="fas fa-sm fa-star"></i>
-                  </span>
-                  Interests
-                </h3>
+                <heading title="Interests" icon="star"></heading>
 
                 <table class="table is-fullwidth info-table">
                   <thead>
@@ -160,6 +113,7 @@
               <div class="column">
 
                 <div ng-repeat="profile in ctrl.person.social" class="social-profile">
+
                   <h3 class="title is-4">
                     <span class="icon">
                       <i class="fab fa-sm fa-{{ctrl.social[profile.type].icon}}"></i>
@@ -187,9 +141,7 @@
             </div>
           </div>
         </div>
-
       </div>
-    </div>
-    <button class="modal-close is-large" aria-label="close" ng-click='closeModal()'></button>
+    </modal>
   </div>
 </div>

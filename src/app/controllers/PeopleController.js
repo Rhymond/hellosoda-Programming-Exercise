@@ -51,25 +51,14 @@ class PeopleController {
    * Open person Card
    * @param index person array index
    */
-  viewPerson(index) {
-    this.modal = true;
-    this.person = this.people[index];
-
+  setPerson(person) {
     this.logger.log({
       message: 'User selected an user card',
-      person_id: this.person.id
-    })
-  };
-
-  /**
-   * Log user interaction with avatar
-   * @param person Person object
-   */
-  hoverAvatar(person) {
-    this.logger.log({
-      message: 'User hover over an avatar',
       person_id: person.id
-    })
+    });
+
+    this.modal = true;
+    this.person = person;
   };
 }
 

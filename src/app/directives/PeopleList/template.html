@@ -1,0 +1,26 @@
+<table class="table is-fullwidth is-hoverable">
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Job Title</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="(index, person) in people">
+      <td><avatar person="person"></td>
+      <td>{{person.personal.first_name | title | capitalise}} {{person.personal.last_name}}</td>
+      <td>{{person.personal.age}}</td>
+      <td>{{person.personal.job_title}}</td>
+      <td>{{person.personal.city}}</td>
+      <td>{{person.personal.country}}</td>
+      <td>
+        <a class="button is-primary" ng-click='viewPerson(person)'>View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
