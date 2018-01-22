@@ -32,14 +32,11 @@ The server logs the following front-end events:
 + Clone Repository
 + `npm install`
 + `pip install -r requirements.txt`
++ `cp .env.example .env`
 + `npm run build`
 
 ## Development
 
-+ Clone Repository
-+ `npm install`
-+ `pip install -r requirements.txt`
-+ `cp .env.example .env`
 + Run Angular `npm start`
 + Run Tornado `python ./app.py --debug`
 + Visit `localhost:8080`
@@ -48,7 +45,7 @@ The server logs the following front-end events:
 
 + `npm run build`
 + Run Tornado Server `python ./app.py`
-+ Visit `localhsto:8888`
++ Visit `localhost:8888`
 
 ## Todo
 - [ ] Write Angular JS tests
