@@ -19,9 +19,9 @@ User Interface is built using Angular JS and Lightweight Bulma CSS framework.
 By clicking on selected Person "view" button you can open detailed Person Card.
 
 The server logs the following front-end events:
-• the user visits the page;
-• the user selects an user card;
-• the user hovers over an avatar;
++ the user visits the page;
++ the user selects an user card;
++ the user hovers over an avatar;
 
 ## Requirements
 
@@ -30,11 +30,25 @@ The server logs the following front-end events:
 ## Installation
 
 + Clone Repository
++ `npm install`
 + `pip install -r requirements.txt`
-+ `python ./app.py --debug`
-+ Visit `http://localhost:8888` to see the page.
++ `npm run build`
+
+## Development
+
++ Clone Repository
++ `npm install`
++ `pip install -r requirements.txt`
++ `cp .env.example .env`
++ Run Angular `npm start`
++ Run Tornado `python ./app.py --debug`
++ Visit `localhost:8080`
+
+## Production
+
++ `npm run build`
++ Run Tornado Server `python ./app.py`
++ Visit `localhsto:8888`
 
 ## Todo
 - [ ] Write Angular JS tests
-- [ ] yarn integration for package managing
-- [ ] Webpack Integration
